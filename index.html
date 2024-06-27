@@ -16,31 +16,33 @@
 				padding: 10px;
 				border-radius: 5px;
 				width: 250px;
+				z-index: 10;
 			}
 		</style>
 	</head>
 	<body>
-		<!-- Workout Instructions -->
-		<div id="instructions">
-			<p>Welcome to the Virtual Gym!</p>
-			<ol>
-				<li>Click on the treadmill to start running.</li>
-				<li>Click on the dumbbells to lift them.</li>
-				<li>Use the bench for chest presses.</li>
-				<li>Click on other equipment to use them.</li>
-			</ol>
-		</div>
-
 		<a-scene>
+			<!-- Workout Instructions -->
+			<div id="instructions">
+				<p>Welcome to the Virtual Gym!</p>
+				<ol>
+					<li>Click on the treadmill to start running.</li>
+					<li>Click on the dumbbells to lift them.</li>
+					<li>Use the bench for chest presses.</li>
+					<li>Click on other equipment to use them.</li>
+				</ol>
+			</div>
+
 			<!-- Environment -->
-			<a-sky color="#ECECEC"></a-sky>
+			<a-sky color="#ECECEC" src="#skyTexture"></a-sky>
 			<a-plane
 				position="0 0 -10"
 				rotation="-90 0 0"
 				width="30"
 				height="30"
-				color="#7BC8A4"
+				src="#floorTexture"
 			></a-plane>
+
 			<a-light type="ambient" color="#FFF"></a-light>
 			<a-light
 				type="point"
@@ -55,23 +57,24 @@
 				rotation="0 0 0"
 				width="30"
 				height="6"
-				color="#CCC"
+				src="#wallTexture"
 			></a-plane>
 			<a-plane
 				position="-15 3 -5"
 				rotation="0 90 0"
 				width="30"
 				height="6"
-				color="#CCC"
+				src="#wallTexture"
 			></a-plane>
 			<a-plane
 				position="15 3 -5"
 				rotation="0 -90 0"
 				width="30"
 				height="6"
-				color="#CCC"
+				src="#wallTexture"
 			></a-plane>
 
+			<!-- Equipment -->
 			<!-- Treadmill -->
 			<a-box
 				id="treadmill"
@@ -80,7 +83,8 @@
 				depth="1"
 				height="0.5"
 				width="2"
-				event-set__click="_event: click; _target: #treadmillInstruction; value: 'Running...'; color: red"
+				event-set__click="_event: click; _target: #treadmillInstruction; value: Running...; color: red"
+				animation__click="property: position; to: -4 0.6 -5; dur: 500; dir: alternate; loop: true"
 			></a-box>
 			<a-text
 				id="treadmillInstruction"
@@ -97,7 +101,8 @@
 				depth="0.5"
 				height="0.5"
 				width="0.5"
-				event-set__click="_event: click; _target: #dumbbellInstruction; value: 'Lifting...'; color: blue"
+				event-set__click="_event: click; _target: #dumbbellInstruction; value: Lifting...; color: blue"
+				animation__click="property: rotation; to: 360 360 360; dur: 1000; easing: linear; loop: true"
 			></a-box>
 			<a-text
 				id="dumbbellInstruction"
@@ -114,7 +119,8 @@
 				depth="1"
 				height="0.5"
 				width="2"
-				event-set__click="_event: click; _target: #benchInstruction; value: 'Pressing...'; color: green"
+				event-set__click="_event: click; _target: #benchInstruction; value: Pressing...; color: green"
+				animation__click="property: scale; to: 1.1 1.1 1.1; dur: 500; dir: alternate; loop: true"
 			></a-box>
 			<a-text
 				id="benchInstruction"
@@ -130,7 +136,8 @@
 				position="-2 1 -7"
 				radius="0.5"
 				height="2"
-				event-set__click="_event: click; _target: #ellipticalInstruction; value: 'Elliptical in motion...'; color: purple"
+				event-set__click="_event: click; _target: #ellipticalInstruction; value: Elliptical in motion...; color: purple"
+				animation__click="property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true"
 			></a-cylinder>
 			<a-text
 				id="ellipticalInstruction"
@@ -147,7 +154,8 @@
 				depth="1"
 				height="0.5"
 				width="2"
-				event-set__click="_event: click; _target: #rowingInstruction; value: 'Rowing...'; color: yellow"
+				event-set__click="_event: click; _target: #rowingInstruction; value: Rowing...; color: yellow"
+				animation__click="property: position; to: 2 0.6 -7; dur: 500; dir: alternate; loop: true"
 			></a-box>
 			<a-text
 				id="rowingInstruction"
@@ -164,7 +172,8 @@
 				width="2"
 				height="1"
 				rotation="-90 0 0"
-				event-set__click="_event: click; _target: #yogaInstruction; value: 'Doing Yoga...'; color: orange"
+				event-set__click="_event: click; _target: #yogaInstruction; value: Doing Yoga...; color: orange"
+				animation__click="property: scale; to: 1.2 1.2 1.2; dur: 500; dir: alternate; loop: true"
 			></a-plane>
 			<a-text
 				id="yogaInstruction"
@@ -179,7 +188,8 @@
 				color="pink"
 				position="5 0.5 -3"
 				radius="0.5"
-				event-set__click="_event: click; _target: #ballInstruction; value: 'Using Medicine Ball...'; color: pink"
+				event-set__click="_event: click; _target: #ballInstruction; value: Using Medicine Ball...; color: pink"
+				animation__click="property: position; to: 5 0.6 -3; dur: 500; dir: alternate; loop: true"
 			></a-sphere>
 			<a-text
 				id="ballInstruction"
@@ -195,7 +205,8 @@
 				position="-3 1 -8"
 				radius="0.5"
 				height="2"
-				event-set__click="_event: click; _target: #bikeInstruction; value: 'Biking...'; color: cyan"
+				event-set__click="_event: click; _target: #bikeInstruction; value: Biking...; color: cyan"
+				animation__click="property: rotation; to: 0 360 0; dur: 1000; easing: linear; loop: true"
 			></a-cylinder>
 			<a-text
 				id="bikeInstruction"
@@ -212,7 +223,8 @@
 				depth="0.5"
 				height="1"
 				width="0.5"
-				event-set__click="_event: click; _target: #kettlebellInstruction; value: 'Lifting Kettlebell...'; color: magenta"
+				event-set__click="_event: click; _target: #kettlebellInstruction; value: Lifting Kettlebell...; color: magenta"
+				animation__click="property: scale; to: 1.1 1.1 1.1; dur: 500; dir: alternate; loop: true"
 			></a-box>
 			<a-text
 				id="kettlebellInstruction"
@@ -229,7 +241,8 @@
 				depth="0.1"
 				height="4"
 				width="0.1"
-				event-set__click="_event: click; _target: #pullUpInstruction; value: 'Doing Pull-ups...'; color: brown"
+				event-set__click="_event: click; _target: #pullUpInstruction; value: Doing Pull-ups...; color: brown"
+				animation__click="property: rotation; to: 0 0 360; dur: 1000; easing: linear; loop: true"
 			></a-box>
 			<a-text
 				id="pullUpInstruction"
@@ -245,7 +258,8 @@
 				position="-6 2 -6"
 				radius="0.5"
 				height="3"
-				event-set__click="_event: click; _target: #punchingBagInstruction; value: 'Punching...'; color: darkred"
+				event-set__click="_event: click; _target: #punchingBagInstruction; value: Punching...; color: darkred"
+				animation__click="property: position; to: -6 2.5 -6; dur: 500; dir: alternate; loop: true"
 			></a-cylinder>
 			<a-text
 				id="punchingBagInstruction"
@@ -261,7 +275,8 @@
 				position="6 0.5 -6"
 				radius="0.3"
 				height="1"
-				event-set__click="_event: click; _target: #foamRollerInstruction; value: 'Rolling...'; color: navy"
+				event-set__click="_event: click; _target: #foamRollerInstruction; value: Rolling...; color: navy"
+				animation__click="property: scale; to: 1.1 1.1 1.1; dur: 500; dir: alternate; loop: true"
 			></a-cylinder>
 			<a-text
 				id="foamRollerInstruction"
@@ -277,7 +292,8 @@
 				position="0 0 -9"
 				radius="0.5"
 				radius-tubular="0.05"
-				event-set__click="_event: click; _target: #jumpRopeInstruction; value: 'Jumping...'; color: teal"
+				event-set__click="_event: click; _target: #jumpRopeInstruction; value: Jumping...; color: teal"
+				animation__click="property: scale; to: 1.1 1.1 1.1; dur: 500; dir: alternate; loop: true"
 			></a-torus>
 			<a-text
 				id="jumpRopeInstruction"
@@ -290,6 +306,14 @@
 			<a-camera position="0 1.6 5" look-controls="enabled: true">
 				<a-cursor color="red"></a-cursor>
 			</a-camera>
+
+			<!-- Textures and Environment Assets -->
+			<a-assets>
+				<img id="skyTexture" src="path_to_sky_texture.jpg" />
+				<img id="floorTexture" src="path_to_floor_texture.jpg" />
+				<img id="wallTexture" src="path_to_wall_texture.jpg" />
+				<!-- Add more textures as needed -->
+			</a-assets>
 		</a-scene>
 	</body>
 </html>
