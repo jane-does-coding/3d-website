@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Interactive Virtual Gym</title>
+		<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+		<style>
+			#instructions {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				color: white;
+				background-color: rgba(0, 0, 0, 0.7);
+				padding: 10px;
+				border-radius: 5px;
+				width: 250px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Workout Instructions -->
+		<div id="instructions">
+			<p>Welcome to the Virtual Gym!</p>
+			<ol>
+				<li>Click on the treadmill to start running.</li>
+				<li>Click on the dumbbells to lift them.</li>
+				<li>Use the bench for chest presses.</li>
+				<li>Click on other equipment to use them.</li>
+			</ol>
+		</div>
+
+		<a-scene>
+			<!-- Environment -->
+			<a-sky color="#ECECEC"></a-sky>
+			<a-plane
+				position="0 0 -10"
+				rotation="-90 0 0"
+				width="30"
+				height="30"
+				color="#7BC8A4"
+			></a-plane>
+			<a-light type="ambient" color="#FFF"></a-light>
+			<a-light
+				type="point"
+				position="2 4 -5"
+				intensity="1.5"
+				color="#FFF"
+			></a-light>
+
+			<!-- Walls -->
+			<a-plane
+				position="0 3 -10"
+				rotation="0 0 0"
+				width="30"
+				height="6"
+				color="#CCC"
+			></a-plane>
+			<a-plane
+				position="-15 3 -5"
+				rotation="0 90 0"
+				width="30"
+				height="6"
+				color="#CCC"
+			></a-plane>
+			<a-plane
+				position="15 3 -5"
+				rotation="0 -90 0"
+				width="30"
+				height="6"
+				color="#CCC"
+			></a-plane>
+
+			<!-- Treadmill -->
+			<a-box
+				id="treadmill"
+				color="blue"
+				position="-4 0.5 -5"
+				depth="1"
+				height="0.5"
+				width="2"
+				event-set__click="_event: click; _target: #treadmillInstruction; value: 'Running...'; color: red"
+			></a-box>
+			<a-text
+				id="treadmillInstruction"
+				value="Click to start running"
+				position="-4 2.5 -5"
+				align="center"
+			></a-text>
+
+			<!-- Dumbbells -->
+			<a-box
+				id="dumbbells"
+				color="gray"
+				position="0 1 -5"
+				depth="0.5"
+				height="0.5"
+				width="0.5"
+				event-set__click="_event: click; _target: #dumbbellInstruction; value: 'Lifting...'; color: blue"
+			></a-box>
+			<a-text
+				id="dumbbellInstruction"
+				value="Click to lift"
+				position="0 2.5 -5"
+				align="center"
+			></a-text>
+
+			<!-- Bench -->
+			<a-box
+				id="bench"
+				color="green"
+				position="4 0.5 -5"
+				depth="1"
+				height="0.5"
+				width="2"
+				event-set__click="_event: click; _target: #benchInstruction; value: 'Pressing...'; color: green"
+			></a-box>
+			<a-text
+				id="benchInstruction"
+				value="Click to use bench"
+				position="4 2.5 -5"
+				align="center"
+			></a-text>
+
+			<!-- Elliptical -->
+			<a-cylinder
+				id="elliptical"
+				color="purple"
+				position="-2 1 -7"
+				radius="0.5"
+				height="2"
+				event-set__click="_event: click; _target: #ellipticalInstruction; value: 'Elliptical in motion...'; color: purple"
+			></a-cylinder>
+			<a-text
+				id="ellipticalInstruction"
+				value="Click to use elliptical"
+				position="-2 2.5 -7"
+				align="center"
+			></a-text>
+
+			<!-- Rowing Machine -->
+			<a-box
+				id="rowingMachine"
+				color="yellow"
+				position="2 0.5 -7"
+				depth="1"
+				height="0.5"
+				width="2"
+				event-set__click="_event: click; _target: #rowingInstruction; value: 'Rowing...'; color: yellow"
+			></a-box>
+			<a-text
+				id="rowingInstruction"
+				value="Click to row"
+				position="2 2.5 -7"
+				align="center"
+			></a-text>
+
+			<!-- Yoga Mat -->
+			<a-plane
+				id="yogaMat"
+				color="orange"
+				position="-5 0 -3"
+				width="2"
+				height="1"
+				rotation="-90 0 0"
+				event-set__click="_event: click; _target: #yogaInstruction; value: 'Doing Yoga...'; color: orange"
+			></a-plane>
+			<a-text
+				id="yogaInstruction"
+				value="Click to do Yoga"
+				position="-5 2.5 -3"
+				align="center"
+			></a-text>
+
+			<!-- Medicine Ball -->
+			<a-sphere
+				id="medicineBall"
+				color="pink"
+				position="5 0.5 -3"
+				radius="0.5"
+				event-set__click="_event: click; _target: #ballInstruction; value: 'Using Medicine Ball...'; color: pink"
+			></a-sphere>
+			<a-text
+				id="ballInstruction"
+				value="Click to use Medicine Ball"
+				position="5 2.5 -3"
+				align="center"
+			></a-text>
+
+			<!-- Exercise Bike -->
+			<a-cylinder
+				id="exerciseBike"
+				color="cyan"
+				position="-3 1 -8"
+				radius="0.5"
+				height="2"
+				event-set__click="_event: click; _target: #bikeInstruction; value: 'Biking...'; color: cyan"
+			></a-cylinder>
+			<a-text
+				id="bikeInstruction"
+				value="Click to use Bike"
+				position="-3 2.5 -8"
+				align="center"
+			></a-text>
+
+			<!-- Kettlebell -->
+			<a-box
+				id="kettlebell"
+				color="magenta"
+				position="3 0.5 -8"
+				depth="0.5"
+				height="1"
+				width="0.5"
+				event-set__click="_event: click; _target: #kettlebellInstruction; value: 'Lifting Kettlebell...'; color: magenta"
+			></a-box>
+			<a-text
+				id="kettlebellInstruction"
+				value="Click to use Kettlebell"
+				position="3 2.5 -8"
+				align="center"
+			></a-text>
+
+			<!-- Pull-Up Bar -->
+			<a-box
+				id="pullUpBar"
+				color="brown"
+				position="6 2 -7"
+				depth="0.1"
+				height="4"
+				width="0.1"
+				event-set__click="_event: click; _target: #pullUpInstruction; value: 'Doing Pull-ups...'; color: brown"
+			></a-box>
+			<a-text
+				id="pullUpInstruction"
+				value="Click to do Pull-ups"
+				position="6 2.5 -7"
+				align="center"
+			></a-text>
+
+			<!-- Punching Bag -->
+			<a-cylinder
+				id="punchingBag"
+				color="darkred"
+				position="-6 2 -6"
+				radius="0.5"
+				height="3"
+				event-set__click="_event: click; _target: #punchingBagInstruction; value: 'Punching...'; color: darkred"
+			></a-cylinder>
+			<a-text
+				id="punchingBagInstruction"
+				value="Click to punch"
+				position="-6 2.5 -6"
+				align="center"
+			></a-text>
+
+			<!-- Foam Roller -->
+			<a-cylinder
+				id="foamRoller"
+				color="navy"
+				position="6 0.5 -6"
+				radius="0.3"
+				height="1"
+				event-set__click="_event: click; _target: #foamRollerInstruction; value: 'Rolling...'; color: navy"
+			></a-cylinder>
+			<a-text
+				id="foamRollerInstruction"
+				value="Click to use Foam Roller"
+				position="6 2.5 -6"
+				align="center"
+			></a-text>
+
+			<!-- Jump Rope -->
+			<a-torus
+				id="jumpRope"
+				color="teal"
+				position="0 0 -9"
+				radius="0.5"
+				radius-tubular="0.05"
+				event-set__click="_event: click; _target: #jumpRopeInstruction; value: 'Jumping...'; color: teal"
+			></a-torus>
+			<a-text
+				id="jumpRopeInstruction"
+				value="Click to use Jump Rope"
+				position="0 2.5 -9"
+				align="center"
+			></a-text>
+
+			<!-- Camera -->
+			<a-camera position="0 1.6 5" look-controls="enabled: true">
+				<a-cursor color="red"></a-cursor>
+			</a-camera>
+		</a-scene>
+	</body>
+</html>
